@@ -1,6 +1,7 @@
 ---AGREGAR A FIRESTORAGE
 ***agregar a firestorage generando el uid***
-db.collection("cities").add({
+var bd = firebase.firestore();
+bd.collection("cities").add({
     name: "Tokyo",
     country: "Japan"
 })
@@ -37,3 +38,15 @@ docRef.get().then(function(doc) {
 }).catch(function(error) {
     console.log("Error getting document:", error);
 });
+
+--BUSCAR DOCUMENTO EN FIRESTORAGE
+***buscar documento por ***
+bd.collection('contactos').where('nombre','==','antonio').onSnapshot(
+    coleccion =>{
+        coleccion.forEach(documento => {
+            this.contactos.push(documento.data());
+        });
+    } 
+);
+
+El método where() usa tres parámetros: un campo para filtrar, una operación de comparación y un valor. La comparación puede ser <, <=, ==, > o >=. Para iOS, Android y Java, el operador de comparación se nombra de forma explícita en el método.
